@@ -1,22 +1,36 @@
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SCIENTIFIC CALCULATOR</title>
+
   <style>
     * {
       box-sizing: border-box;
     }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+
     .Calculator-body {
-      height: 400px; /* Increased height for dual display */
+      height: 400px;
       width: 280px;
-      background: linear-gradient(rgba(0, 157, 255, 0.781),rgba(14, 43, 105, 0.725),rgba(162, 34, 20, 0.911));
+      background: linear-gradient(rgba(0,157,255,0.781),
+      rgba(14,43,105,0.725),
+      rgba(162,34,20,0.911));
       margin: 20px auto;
       border-radius: 10px;
       padding: 20px;
     }
 
-    /* Container for the dual screen */
+    /* Display */
+
     .screen-wrapper {
       background-color: #86994c;
       border: 3.5px solid #0c0505;
@@ -28,135 +42,201 @@
       justify-content: space-between;
     }
 
-    /* Small top line for the input equation */
     #history {
       font-size: 14px;
-      color: #f00707;
+      color: red;
       text-align: right;
       height: 20px;
       overflow: hidden;
-      background-color: #86994c;
-       
+      background: #86994c;
     }
 
-    /* Main bottom line for the result */
     .screen {
-      background: transparent;
-      text-align: right;
       width: 100%;
       border: none;
+      background: transparent;
+      text-align: right;
       font-size: 30px;
       outline: none;
     }
 
+    /* Button Area */
+
     .button-container {
-      background-image: url(   https://scontent.fktm20-1.fna.fbcdn.net/v/t39.30808-6/577532479_1823292988315891_1926417523176076930_n.jpg?stp=dst-jpg_tt6&cstp=mx960x1280&ctp=s960x1280&_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EGcPyGmP2MYQ7kNvwEVY9kN&_nc_oc=AdpP2Mn-w-XvwipQbC23MWRdpEZnZK4WeC5s74RejRsF-_Y5FbGi2Mg_NYAk3KE1Lc0ZyFVoj8LxTAOuXAKAz88b&_nc_zt=23&_nc_ht=scontent.fktm20-1.fna&_nc_gid=5oWu9fdPzUpmK7CLwwH_TA&_nc_ss=7b2a8&oh=00_Af8OGF-lCAx_oVL1_AquWgG23mZMgoLc1Qpt65G1tZ_wnA&oe=6A419FE1 );
-      height: 240px;
+
+      background-image: url("https://scontent.fktm20-1.fna.fbcdn.net/v/t39.30808-6/577532479_1823292988315891_1926417523176076930_n.jpg");
+
       background-size: cover;
       background-repeat: no-repeat;
+
+      height: 240px;
+        background-image: url(https://scontent.fktm3-1.fna.fbcdn.net/v/t39.30808-6/730689083_2002149017096953_10837840962861786_n.jpg?stp=dst-jpg_tt6&cstp=mx757x849&ctp=s757x849&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=1BuMzsfY3WkQ7kNvwGIZfwm&_nc_oc=AdqyKDThIjAPtSc-atxJwFFbERAzVnhrv9glyiV4In90GeZgSYxYbhoQXQgm0sUhhXwVdWKagWCK_9-lKgnzmdqr&_nc_zt=23&_nc_ht=scontent.fktm3-1.fna&_nc_gid=O-EI5yBMZppuRUAmGSWyVw&_nc_ss=7b2a8&oh=00_Af_sk8eMCNw0Wxj9Y0k6_X7slofq28woASsU3GVCXGwAnw&oe=6A457DC5 );
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       justify-content: flex-start;
       align-items: center;
+
       border-radius: 10px;
       padding: 5px;
     }
+
     .btn {
+
       width: 50px;
       height: 40px;
-      text-align: center;
-      font-size: 18px;
       margin: 3px;
-      border: 0.5px solid black;
-      cursor: pointer;
+
+      font-size: 18px;
+
       border-radius: 9px;
-      background-color: #fafafa;
+      border: .5px solid black;
+
+      cursor: pointer;
+
+      background: white;
+
     }
+
     .btn:hover {
-      box-shadow: 0 0 20px #ff0000;
-      background-color: #eaff04;
+
+      background: yellow;
+      box-shadow: 0 0 20px red;
+
     }
+
     .btn-equals {
-      background-color: rgb(237, 103, 14);
+
       height: 86px;
+      background: rgb(237,103,14);
+
     }
+
   </style>
 </head>
+
 <body>
-  <div class="Calculator-body">
-    
-    <!-- Dual Display Section -->
-    <div class="screen-wrapper">
-      <div id="history"> </div> <!-- SHOWS INPUT (e.g., 5+5=) -->
-      <input type="text" id="result" class="screen" readonly placeholder="0000000000000" /> <!-- SHOWS OUTPUT (e.g., 10) -->
-    </div>
 
-    <div class="button-container">
-      <button class="btn" onclick="clr()">AC</button>
-      <button class="btn" onclick="dis('7')">7</button>
-      <button class="btn" onclick="dis('4')">4</button>
-      <button class="btn" onclick="dis('1')">1</button>
-      <button class="btn" onclick="dis('0')">0</button>
+<div class="Calculator-body">
 
-      <button class="btn" onclick="dis('-')">+/-</button>
-      <button class="btn" onclick="dis('8')">8</button>
-      <button class="btn" onclick="dis('5')">5</button>
-      <button class="btn" onclick="dis('2')">2</button>
-      <button class="btn" onclick="dis('00')">00</button>
+<div class="screen-wrapper">
 
-      <button class="btn" onclick="dis('/')">/</button>
-      <button class="btn" onclick="dis('9')">9</button>
-      <button class="btn" onclick="dis('6')">6</button>
-      <button class="btn" onclick="dis('3')">3</button>
-      <button class="btn" onclick="dis('.')">.</button>
+<div id="history"></div>
 
-      <button class="btn" onclick="dis('*')">*</button>
-      <button class="btn" onclick="dis('-')">-</button>
-      <button class="btn" onclick="dis('+')">+</button>
-      <button class="btn btn-equals" onclick="solve()">=</button>
-    </div>
-  </div>
+<input
+type="text"
+id="result"
+class="screen"
+readonly
+placeholder="0000000000000">
 
-  <script>
-    function dis(val) {
-      document.getElementById("result").value += val;
-    }
+</div>
 
-    function solve() {
-      try {
+<div class="button-container">
+
+<!-- Row 1 -->
+<button class="btn" onclick="clr()">AC</button>
+<button class="btn" onclick="dis('7')">7</button>
+<button class="btn" onclick="dis('4')">4</button>
+<button class="btn" onclick="dis('1')">1</button>
+<button class="btn" onclick="dis('0')">0</button>
+
+<!-- DEL Button (replaces +/-) -->
+<button class="btn" onclick="delValue()">DEL</button>
+<button class="btn" onclick="dis('8')">8</button>
+<button class="btn" onclick="dis('5')">5</button>
+<button class="btn" onclick="dis('2')">2</button>
+<button class="btn" onclick="dis('00')">00</button>
+
+<button class="btn" onclick="dis('/')">/</button>
+<button class="btn" onclick="dis('9')">9</button>
+<button class="btn" onclick="dis('6')">6</button>
+<button class="btn" onclick="dis('3')">3</button>
+<button class="btn" onclick="dis('.')">.</button>
+
+<button class="btn" onclick="dis('*')">*</button>
+<button class="btn" onclick="dis('-')">-</button>
+<button class="btn" onclick="dis('+')">+</button>
+<button class="btn btn-equals" onclick="solve()">=</button>
+
+</div>
+</div>
+
+<script>
+
+function dis(val){
+    document.getElementById("result").value += val;
+}
+
+function solve(){
+
+    try{
+
         let input = document.getElementById("result").value;
-        if (input === "") return;
 
-        // Show the equation in the small top history line
+        if(input=="") return;
+
         document.getElementById("history").innerText = input + " =";
-        
-        // Calculate result
+
         let output = eval(input);
-        
-        // Show the answer in the main big screen
+
         document.getElementById("result").value = output;
-      } catch (e) {
+
+    }
+
+    catch(e){
+
         document.getElementById("result").value = "Error";
-      }
+
     }
 
-    function clr() {
-      document.getElementById("result").value = "";
-      document.getElementById("history").innerText = "";
-    }
+}
 
-    // Support for keyboard
-    window.onkeydown = function (event) {
-      if ((event.key >= '0' && event.key <= '9') || ['+', '-', '*', '/', '.'].includes(event.key)) {
+function clr(){
+
+    document.getElementById("result").value = "";
+
+    document.getElementById("history").innerText = "";
+
+}
+
+/* DEL Button */
+
+function delValue(){
+
+    let txt = document.getElementById("result").value;
+
+    document.getElementById("result").value = txt.slice(0,-1);
+
+}
+
+/* Keyboard Support */
+
+window.onkeydown = function(event){
+
+    if((event.key>='0' && event.key<='9') ||
+       ['+','-','*','/','.'].includes(event.key)){
+
         dis(event.key);
-      } else if (event.key === 'Enter') {
+
+    }
+
+    else if(event.key==="Enter"){
+
         solve();
-      } else if (event.key === 'Backspace') {
-        let str = document.getElementById("result").value;
-        document.getElementById("result").value = str.substring(0, str.length - 1);
-      }
-    };
-  </script>
+
+    }
+
+    else if(event.key==="Backspace"){
+
+        delValue();
+
+    }
+
+}
+
+</script>
+
 </body>
 </html>
+
